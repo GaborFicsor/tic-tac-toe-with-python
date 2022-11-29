@@ -1,10 +1,17 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# tic-tac-toe-with-python
 
-Welcome GaborFicsor,
+Placeholder text
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+I must not make changes to 
+* index.js
+* package.json
+* Procfile
 
-## Reminders
+Contents of the requirements.txt file should be updated once the site is ready to be deployed.
+
+All of the python code must be written in the run.py file provided.
+
+# Reminders
 
 * Your code must be placed in the `run.py` file
 * Your dependencies must be placed in the `requirements.txt` file
