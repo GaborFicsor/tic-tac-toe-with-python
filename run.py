@@ -28,6 +28,8 @@ class TicTacToe:
     def make_move(self, square, letter):
         if self.board[square] == ' ':
             self.board[square] = letter
+            if self.winner(square, letter):
+                self.current_winner = letter
             return True
         return False
 
@@ -46,3 +48,11 @@ def play(game, x_player, o_player, print_game=True):
         if game.make_move(square, letter):
             if print_game:
                 print(letter + f' makes a move to square {square}')
+                game.print_board()
+                print('')
+
+            letter = 'O' if letter == 'X' else 'X'
+            if letter == 'X':
+                letter = 'O'
+            else:
+                letter = 'X'
