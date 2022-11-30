@@ -1,5 +1,10 @@
 import time
+import sys
+import os
 from player import HumanPlayer, RandomComputerPlayer
+
+
+running = True
 
 
 class TicTacToe:
@@ -94,28 +99,22 @@ class TicTacToe:
         return False
 
 
-def running():
-    pass
+def quit(user_input):
+    """
+    The program quits if the user types in "q" as user input
+    """
+    if user_input == "q" or user_input == "Q":
+        type("thanks for playing")
+        return True
+    else:
+        return False
 
 
-def menu():
-    """ This is a docstring """
-    message = "Welcome to tic tac toe!"
-    ascii = ("""
- ______   __     ______        ______   ______     ______        ______   ______     ______    
-/\__  _\ /\ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\   
-\/_/\ \/ \ \ \  \ \ \____     \/_/\ \/ \ \  __ \  \ \ \____     \/_/\ \/ \ \ \/\ \  \ \  __\   
-   \ \_\  \ \_\  \ \_____\       \ \_\  \ \_\ \_\  \ \_____\       \ \_\  \ \_____\  \ \_____\ 
-    \/_/   \/_/   \/_____/        \/_/   \/_/\/_/   \/_____/        \/_/   \/_____/   \/_____/                                                                                               
-""")
-    print("\n Welcome, please enter your name")
-    name = input("Please enter your name: ")
-    print(f"Welcome {name}! Enter 's' to start the game or 'q' to quit!")
-    user_enter = input().lower()
-    if user_enter == "s":
-        pass
-    elif user_enter == "q":
-        pass
+def type(text):
+    for char in text:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(0.1)
 
 
 def play(game, human, computer, print_game=True):
@@ -128,7 +127,6 @@ def play(game, human, computer, print_game=True):
     """
     if print_game:
         # prints out the reference board if print_game is set to True
-        menu()
         game.print_ref_board()
 
     letter = 'X'
@@ -168,7 +166,7 @@ def play(game, human, computer, print_game=True):
             else:
                 letter = 'X'
 
-        time.sleep(1)
+        # time.sleep(1)
         # a short delay between switching players
 
     if print_game:
@@ -178,8 +176,40 @@ def play(game, human, computer, print_game=True):
         print("It's a tie!")
 
 
+def menu():
+    """ This is a docstring """
+    # x_player = HumanPlayer('X')
+    # o_player = RandomComputerPlayer('O')
+    # t = TicTacToe()
+    ascii = ("""
+ ______   __     ______        ______   ______     ______        ______   ______     ______    
+/\__  _\ /\ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\   
+\/_/\ \/ \ \ \  \ \ \____     \/_/\ \/ \ \  __ \  \ \ \____     \/_/\ \/ \ \ \/\ \  \ \  __\   
+   \ \_\  \ \_\  \ \_____\       \ \_\  \ \_\ \_\  \ \_____\       \ \_\  \ \_____\  \ \_____\ 
+    \/_/   \/_/   \/_____/        \/_/   \/_/\/_/   \/_____/        \/_/   \/_____/   \/_____/
+    """)
+    print('')
+    print(ascii)
+    print("Welcome to tic-tac-toe")
+    print('')
+    name = input("Please enter your name: ")
+    print('')
+    print(f"Welcome {name}!\n\nEnter 's' to start the game or 'q' to quit!")
+    while True:
+        user_input = input().lower()
+        if user_input == "s":
+            type("Game is starting...")
+            time.sleep(1)
+            os.system("cls")
+            os.system("clear")
+            play(t, x_player, o_player, print_game=True)
+            return
+        elif user_input == "q":
+            quit(user_input)
+
+
 if __name__ == '__main__':
     x_player = HumanPlayer('X')
     o_player = RandomComputerPlayer('O')
     t = TicTacToe()
-    play(t, x_player, o_player, print_game=True)
+    menu()
