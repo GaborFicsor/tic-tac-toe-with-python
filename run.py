@@ -1,3 +1,4 @@
+import time
 from player import HumanPlayer, RandomComputerPlayer
 
 
@@ -17,10 +18,7 @@ class TicTacToe:
             print("| " + ' | '.join(row) + ' |')
 
     def available_moves(self):
-        moves = []
-        for i, spot in enumerate(self.board):
-            if spot == ' ':
-                moves.append(i)
+        return [i for i, spot in enumerate(self.board) if spot == ' ']
 
     def empty_squares(self):
         return ' ' in self.board
@@ -58,13 +56,13 @@ class TicTacToe:
         return False
 
 
-def play(game, x_player, o_player, print_game=True):
+def play(game, human, computer, print_game=True):
     if print_game:
         game.print_board_nums()
 
     letter = 'X'
     while game.empty_squares():
-        if letter == '0':
+        if letter == 'O':
             square = o_player.get_move(game)
         else:
             square = x_player.get_move(game)
@@ -80,14 +78,15 @@ def play(game, x_player, o_player, print_game=True):
                     print(letter + ' wins!')
                 return letter
 
-            letter = 'O' if letter == 'X' else 'X'
             if letter == 'X':
                 letter = 'O'
             else:
                 letter = 'X'
 
-        if print_game:
-            print("It's a tie!")
+        time.sleep(1)
+
+    if print_game:
+        print("It's a tie!")
 
 
 if __name__ == '__main__':
