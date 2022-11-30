@@ -117,6 +117,18 @@ def type(text):
         time.sleep(0.1)
 
 
+def play_again():
+    print("Would you like to play again? (Y/N): ")
+    decision = input().strip().lower()
+    while True:
+        if decision == "y":
+            os.system("cls")
+            os.system("clear")
+            play(t, x_player, o_player, print_game=True)
+        elif decision == "q":
+            quit(user_input)
+
+
 def play(game, human, computer, print_game=True):
     """
     This is the main game function that prints the reference
@@ -157,6 +169,7 @@ def play(game, human, computer, print_game=True):
                 # ends the game loop
                 if print_game:
                     print(letter + ' wins!')
+                    play_again()
                 return letter
 
             if letter == 'X':
@@ -174,13 +187,15 @@ def play(game, human, computer, print_game=True):
         # and there is no empty space left
         # print "It's a tie!"
         print("It's a tie!")
+        play_again()
 
 
 def menu():
-    """ This is a docstring """
-    # x_player = HumanPlayer('X')
-    # o_player = RandomComputerPlayer('O')
-    # t = TicTacToe()
+    """
+    This function is called first, when the program starts running.
+    Prints out game title and asks for user input to either 
+    proceed to playing or quit the game
+    """
     ascii = ("""
  ______   __     ______        ______   ______     ______        ______   ______     ______    
 /\__  _\ /\ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\   
