@@ -44,7 +44,7 @@ class HumanPlayer(Player):
 
     def get_move(self, game):
         """
-        method for validating the player's move based on
+        Method for asking and validating the player's move based on
         available spots left on the game board, and checking
         for valid input.
         """
