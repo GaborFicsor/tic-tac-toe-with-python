@@ -7,7 +7,9 @@ class TicTacToe:
     Class for the main game and the game board.
     """
     def __init__(self):
+        # a list for representing the empty 3x3 board
         self.board = [' ' for _ in range(9)]
+        # set the value to the letter of the winner later in the game
         self.current_winner = None
 
     def print_board(self):
@@ -19,6 +21,7 @@ class TicTacToe:
             print("| " + ' | '.join(row) + ' |')
 
     @staticmethod
+    # a method that is not tied to any classes
     def print_board_nums():
         """
         Method for printing the reference board with the indices
@@ -55,8 +58,11 @@ class TicTacToe:
         winner if there is one.
         """
         if self.board[square] == ' ':
+            # if the intended move is available
             self.board[square] = letter
+            # assign player's letter to the spot
             if self.winner(square, letter):
+                # assign winner's letter if there is one.
                 self.current_winner = letter
             return True
         return False
@@ -68,6 +74,7 @@ class TicTacToe:
         column, and 2 possible diagonal outcomes that.
         """
         row_ind = square // 3
+        
         row = self.board[row_ind*3:(row_ind + 1) * 3]
         if all([spot == letter for spot in row]):
             return True
@@ -97,34 +104,53 @@ def play(game, human, computer, print_game=True):
     move.
     """
     if print_game:
+        # prints out the reference board if print_game is set to True
         game.print_board_nums()
 
     letter = 'X'
+    # X means the first one to make a move is the player
     while game.empty_squares():
         if letter == 'O':
+            # if the current value of the letter is O, the computer moves
+            # otherwise the player is asked to make a move
+            # switching between players happens at the end of the loop,
+            # while there is no winner yet, or there are empty spaces left
             square = o_player.get_move(game)
         else:
             square = x_player.get_move(game)
 
         if game.make_move(square, letter):
+            # proceeds if the intended move is valid
             if print_game:
+                # print the current player's move
                 print(letter + f' makes a move to square {square}')
+                # print the updated board
                 game.print_board()
+                # print an empty line after the board
                 print('')
 
             if game.current_winner:
+                # triggers if a value was assigned by winner()
+                # returns the letter of the winner
+                # ends the game loop
                 if print_game:
                     print(letter + ' wins!')
                 return letter
 
             if letter == 'X':
+                # keeps switching players, until winner is assigned
+                # or if there is available space left
                 letter = 'O'
             else:
                 letter = 'X'
 
         time.sleep(1)
+        # a short delay between switching players
 
     if print_game:
+        # if the while loop ends without a winner assigned,
+        # and there is no empty space left
+        # print "It's a tie!"
         print("It's a tie!")
 
 

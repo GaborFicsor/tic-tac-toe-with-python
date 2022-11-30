@@ -7,7 +7,7 @@ class Player:
     that are used in tic-tac-toe.
     """
     def __init__(self, letter):
-        # the letter is either X, or O based on the rules of tic-tac-toe
+        # the letter will be either X(HumanPlayer), or O(RandomComputerPlayer)
         self.letter = letter
 
     def get_move(self, game):
@@ -26,9 +26,8 @@ class RandomComputerPlayer(Player):
 
     def get_move(self, game):
         """
-        method for validating the computer's move
-        based on available spots left on the game board
-        and generating it's choice by random.
+        Method for generating the computer's random move
+        based on the available spots on the board.
         """
         square = random.choice(game.available_moves())
         return square
