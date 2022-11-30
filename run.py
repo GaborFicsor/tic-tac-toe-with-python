@@ -12,7 +12,7 @@ class TicTacToe:
         # set the value to the letter of the winner later in the game
         self.current_winner = None
 
-    def print_board(self):
+    def print_game_board(self):
         """
         Method for printing the base 3x3 game board.
         Prints a separator between each spot on the board.
@@ -22,13 +22,13 @@ class TicTacToe:
 
     @staticmethod
     # a method that is not tied to any classes
-    def print_board_nums():
+    def print_ref_board():
         """
-        Method for printing the reference board with the indices
-        referring to the correct user input.
+        Method for printing the reference board at the start of the game
+        with the indices referring to the correct user input.
         """
-        number_board = [[str(i) for i in range(j*3, (j+1)*3)] for j in range(3)]
-        for row in number_board:
+        ref_board = [[str(i) for i in range(j*3, (j+1)*3)] for j in range(3)]
+        for row in ref_board:
             print("| " + ' | '.join(row) + ' |')
 
     def available_moves(self):
@@ -74,7 +74,6 @@ class TicTacToe:
         column, and 2 possible diagonal outcomes that.
         """
         row_ind = square // 3
-        
         row = self.board[row_ind*3:(row_ind + 1) * 3]
         if all([spot == letter for spot in row]):
             return True
@@ -95,6 +94,30 @@ class TicTacToe:
         return False
 
 
+def running():
+    pass
+
+
+def menu():
+    """ This is a docstring """
+    message = "Welcome to tic tac toe!"
+    ascii = ("""
+ ______   __     ______        ______   ______     ______        ______   ______     ______    
+/\__  _\ /\ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\   
+\/_/\ \/ \ \ \  \ \ \____     \/_/\ \/ \ \  __ \  \ \ \____     \/_/\ \/ \ \ \/\ \  \ \  __\   
+   \ \_\  \ \_\  \ \_____\       \ \_\  \ \_\ \_\  \ \_____\       \ \_\  \ \_____\  \ \_____\ 
+    \/_/   \/_/   \/_____/        \/_/   \/_/\/_/   \/_____/        \/_/   \/_____/   \/_____/                                                                                               
+""")
+    print("\n Welcome, please enter your name")
+    name = input("Please enter your name: ")
+    print(f"Welcome {name}! Enter 's' to start the game or 'q' to quit!")
+    user_enter = input().lower()
+    if user_enter == "s":
+        pass
+    elif user_enter == "q":
+        pass
+
+
 def play(game, human, computer, print_game=True):
     """
     This is the main game function that prints the reference
@@ -105,7 +128,8 @@ def play(game, human, computer, print_game=True):
     """
     if print_game:
         # prints out the reference board if print_game is set to True
-        game.print_board_nums()
+        menu()
+        game.print_ref_board()
 
     letter = 'X'
     # X means the first one to make a move is the player
@@ -125,7 +149,7 @@ def play(game, human, computer, print_game=True):
                 # print the current player's move
                 print(letter + f' makes a move to square {square}')
                 # print the updated board
-                game.print_board()
+                game.print_game_board()
                 # print an empty line after the board
                 print('')
 
