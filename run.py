@@ -83,7 +83,6 @@ class TicTacToe:
         for row in [self.board[i*3:(i+1)*3] for i in range(3)]:
             print("| " + ' | '.join(row) + ' |')
 
-
     @staticmethod
     # a method that is not tied to any classes
     def print_ref_board():
@@ -190,11 +189,16 @@ def play(game, x_player, o_player, print_game=True):
         return None
 
 
+def get_name():
+    name = input("Please enter your name: ")
+    return name
+
+
 def instructions():
     x_player = HumanPlayer('X')
     o_player = RandomComputerPlayer('O')
     t = TicTacToe()
-    name = input("Please enter your name: ")
+    name = get_name()
     print(f"Welcome {name}!")
     print(f"{name}'s symbol is X\nWhile the computer's symbol is O\nYou will make the first move")
     print("Please Enter 's' to start the game or 'q' to quit!")
@@ -236,7 +240,7 @@ def menu():
         os.system("clear")
         instructions()
         while True:
-            print("Play again? Y/N: ")
+            print("Go back to the starting screen? Y/N: ")
             user_input = input().lower()
             if user_input == "y":
                 os.system("cls")
@@ -250,5 +254,4 @@ def menu():
 
 
 if __name__ == '__main__':
-    while True:
-        menu()
+    menu()
