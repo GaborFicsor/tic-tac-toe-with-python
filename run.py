@@ -161,17 +161,25 @@ def type(text):
         time.sleep(0.1)
 
 
+def go_first():
+    letter = None
+    while True:
+        start = input("Would you like to start, or let the computer go first? Y/N")
+        if start == "y":
+            letter = "X"
+            return letter
+        elif start == "n":
+            letter = "O"
+            return letter
+        else:
+            print("Please enter y if you want to go first, or n to let the computer go first")
+
+
 def play(game, x_player, o_player, print_game=True):
     if print_game:
         game.print_ref_board()
-    # letter = "X"
-    letter = None
-    start = input("Would you like to start, or let the computer go first? Y/N")
-    if start == "y":
-        letter = "X"
-    elif start == "n":
-        letter = "O"
-
+    letter = go_first()
+    
     while game.empty_squares():
         if letter == "O":
             square = o_player.get_move(game)
@@ -195,6 +203,11 @@ def play(game, x_player, o_player, print_game=True):
         return None
 
 
+def wipe():
+    os.system("cls")
+    os.system("clear")
+
+
 def get_name():
     name = input("Please enter your name: ")
     return name
@@ -206,7 +219,8 @@ def instructions():
     t = TicTacToe()
     name = get_name()
     print(f"Welcome {name}!")
-    print(f"{name}'s symbol is X\nWhile the computer's symbol is O\nYou will make the first move")
+    print(f"{name}'s symbol is X\nWhile the computer's symbol is O")
+    print("First one to line up three of their symbols win!")
     print("Please Enter 's' to start the game or 'q' to quit!")
     while True:
         decision = input().lower()
@@ -242,20 +256,17 @@ def menu():
     if user_input == "":
         type("Game is starting...")
         time.sleep(1)
-        os.system("cls")
-        os.system("clear")
+        wipe()
         instructions()
         while True:
             print("Go back to the starting screen? Y/N: ")
             user_input = input().lower()
             if user_input == "y":
-                os.system("cls")
-                os.system("clear")
+                wipe()
                 instructions()
             elif user_input == "n":
                 print("thanks for playing!")
-                os.system("cls")
-                os.system("clear")
+                wipe()
                 break
 
 
