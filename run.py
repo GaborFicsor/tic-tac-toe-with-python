@@ -154,7 +154,7 @@ class TicTacToe:
         return False
 
 
-def type(text):
+def type_slow(text):
     for char in text:
         sys.stdout.write(char)
         sys.stdout.flush()
@@ -179,7 +179,6 @@ def play(game, x_player, o_player, print_game=True):
     if print_game:
         game.print_ref_board()
     letter = go_first()
-    
     while game.empty_squares():
         if letter == "O":
             square = o_player.get_move(game)
@@ -216,7 +215,7 @@ def get_name():
 def instructions():
     x_player = HumanPlayer('X')
     o_player = RandomComputerPlayer('O')
-    t = TicTacToe()
+    tic_tac_toe = TicTacToe()
     name = get_name()
     print(f"Welcome {name}!")
     print(f"{name}'s symbol is X\nWhile the computer's symbol is O")
@@ -225,9 +224,8 @@ def instructions():
     while True:
         decision = input().lower()
         if decision == "s":
-            os.system("cls")
-            os.system("clear")
-            play(t, x_player, o_player, print_game=True)
+            wipe()
+            play(tic_tac_toe, x_player, o_player, print_game=True)
             return
         elif decision == "q":
             print("Thanks for playing!")
@@ -240,21 +238,21 @@ def menu():
     Prints out game title and asks for user input to either
     proceed to playing or quit the game
     """
-    ascii = (r"""
- ______   __     ______        ______   ______     ______        ______   ______     ______    
-/\__  _\ /\ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\   
-\/_/\ \/ \ \ \  \ \ \____     \/_/\ \/ \ \  __ \  \ \ \____     \/_/\ \/ \ \ \/\ \  \ \  __\   
-   \ \_\  \ \_\  \ \_____\       \ \_\  \ \_\ \_\  \ \_____\       \ \_\  \ \_____\  \ \_____\ 
+    ascii_title = (r"""
+ ______   __     ______        ______   ______     ______        ______   ______     ______
+/\__  _\ /\ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\
+\/_/\ \/ \ \ \  \ \ \____     \/_/\ \/ \ \  __ \  \ \ \____     \/_/\ \/ \ \ \/\ \  \ \  __\
+   \ \_\  \ \_\  \ \_____\       \ \_\  \ \_\ \_\  \ \_____\       \ \_\  \ \_____\  \ \_____\
     \/_/   \/_/   \/_____/        \/_/   \/_/\/_/   \/_____/        \/_/   \/_____/   \/_____/
     """)
     print('')
-    print(ascii)
+    print(ascii_title)
     print("Welcome to tic-tac-toe")
     print('')
     print("please press enter to start the game")
     user_input = input().lower()
     if user_input == "":
-        type("Game is starting...")
+        type_slow("Game is starting...")
         time.sleep(1)
         wipe()
         instructions()
