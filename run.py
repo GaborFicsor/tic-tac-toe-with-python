@@ -164,7 +164,13 @@ def type(text):
 def play(game, x_player, o_player, print_game=True):
     if print_game:
         game.print_ref_board()
-    letter = "X"
+    # letter = "X"
+    letter = None
+    start = input("Would you like to start, or let the computer go first? Y/N")
+    if start == "y":
+        letter = "X"
+    elif start == "n":
+        letter = "O"
 
     while game.empty_squares():
         if letter == "O":
