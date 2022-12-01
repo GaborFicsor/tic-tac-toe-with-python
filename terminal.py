@@ -1,31 +1,9 @@
-import os
-import time
-import sys
-
-
-running = True
-
-
-def quit(user_input):
-    """
-    The program quits if the user types in "q" as user input
-    """
-    if user_input == "q" or user_input == "Q":
-        type("thanks for playing")
-        return True
-    else:
-        return False
-
-
-def type(text):
-    for char in text:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(0.1)
-
-
 def menu():
-    """ This is a docstring """
+    """
+    This function is called first, when the program starts running.
+    Prints out game title and asks for user input to either 
+    proceed to playing or quit the game
+    """
     ascii = ("""
  ______   __     ______        ______   ______     ______        ______   ______     ______    
 /\__  _\ /\ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\   
@@ -35,7 +13,7 @@ def menu():
     """)
     print('')
     print(ascii)
-    type("Welcome to tic-tac-toe")
+    print("Welcome to tic-tac-toe")
     print('')
     name = input("Please enter your name: ")
     print('')
@@ -46,17 +24,25 @@ def menu():
         time.sleep(1)
         os.system("cls")
         os.system("clear")
-    elif user_input == "q":
-        quit(user_input)
+        play(t, x_player, o_player, print_game=True)
+       
 
+ while game.current_winner:
+            answer = str(input('Run again? (y/n): '))
+            if answer in ('y', 'n'):
+                break
+            print("invalid input.")
+            if answer == 'y':
+                print("loop breaks")
+            else:
+                print("Goodbye")
 
-def main():
-    while running:
-        menu()
-        if quit:
-            break
-        else:
-            False
-
-
-main()
+ if game.current_winner:
+                # triggers if a value was assigned by winner()
+                # returns the letter of the winner
+                # ends the game loop
+                if print_game:
+                    print(letter + ' wins!')
+                return letter
+                # print_game = False
+                # play_again()

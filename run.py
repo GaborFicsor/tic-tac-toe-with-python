@@ -118,15 +118,7 @@ def type(text):
 
 
 def play_again():
-    print("Would you like to play again? (Y/N): ")
-    decision = input().strip().lower()
-    while True:
-        if decision == "y":
-            os.system("cls")
-            os.system("clear")
-            play(t, x_player, o_player, print_game=True)
-        elif decision == "q":
-            quit(user_input)
+    pass
 
 
 def play(game, human, computer, print_game=True):
@@ -163,14 +155,27 @@ def play(game, human, computer, print_game=True):
                 # print an empty line after the board
                 print('')
 
+            # if game.current_winner:
+            #     # triggers if a value was assigned by winner()
+            #     # returns the letter of the winner
+            #     # ends the game loop
+            #     if print_game:
+            #         print(letter + ' wins!')
+            #     return letter
+            #     # print_game = False
+            #     # play_again()
+
             if game.current_winner:
-                # triggers if a value was assigned by winner()
-                # returns the letter of the winner
-                # ends the game loop
-                if print_game:
-                    print(letter + ' wins!')
-                    play_again()
-                return letter
+                print(f"{letter} wins!")
+                while True:
+                    answer = str(input('Run again? (y/n): '))
+                    if answer == 'y':
+                        type("resetting board...")
+                        break
+                    elif answer == 'n':
+                        print("Goodbye")
+                        break
+                break
 
             if letter == 'X':
                 # keeps switching players, until winner is assigned
@@ -179,15 +184,22 @@ def play(game, human, computer, print_game=True):
             else:
                 letter = 'X'
 
+            if not game.empty_squares():
+                print("It's a tie!")
+                while True:
+                    ask_player()
+
+       
         # time.sleep(1)
         # a short delay between switching players
 
-    if print_game:
-        # if the while loop ends without a winner assigned,
-        # and there is no empty space left
-        # print "It's a tie!"
-        print("It's a tie!")
-        play_again()
+    # if print_game:
+    #     # if the while loop ends without a winner assigned,
+    #     # and there is no empty space left
+    #     # print "It's a tie!"
+    #     print("It's a tie!")
+        
+
 
 
 def menu():
@@ -210,17 +222,14 @@ def menu():
     name = input("Please enter your name: ")
     print('')
     print(f"Welcome {name}!\n\nEnter 's' to start the game or 'q' to quit!")
-    while True:
-        user_input = input().lower()
-        if user_input == "s":
-            type("Game is starting...")
-            time.sleep(1)
-            os.system("cls")
-            os.system("clear")
-            play(t, x_player, o_player, print_game=True)
-            return
-        elif user_input == "q":
-            quit(user_input)
+    user_input = input().lower()
+    if user_input == "s":
+        type("Game is starting...")
+        time.sleep(1)
+        os.system("cls")
+        os.system("clear")
+        play(t, x_player, o_player, print_game=True)
+       
 
 
 if __name__ == '__main__':
