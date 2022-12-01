@@ -1,10 +1,68 @@
 import time
 import sys
 import os
-from player import HumanPlayer, RandomComputerPlayer
+import random
 
 
-running = True
+class Player:
+    """
+    Class for players represented by the letters
+    that are used in tic-tac-toe.
+    """
+    def __init__(self, letter):
+        # the letter will be either X(HumanPlayer), or O(RandomComputerPlayer)
+        self.letter = letter
+
+    def get_move(self, game):
+        """
+        Method for validating each player's intented move.
+        """
+
+
+class RandomComputerPlayer(Player):
+    """
+    Subclass of the Player parent class that defines the computer player
+    and the method used for making their move.
+    """
+    # def __init__(self, letter):
+    #     super().__init__(letter)
+
+    def get_move(self, game):
+        """
+        Method for generating the computer's random move
+        based on the available spots on the board.
+        """
+        square = random.choice(game.available_moves())
+        return square
+
+
+class HumanPlayer(Player):
+    """
+    Subclass of the Player parent class that defines the Human player
+    and the method used for making their move.
+    """
+    # def __init__(self, letter):
+    #     super().__init__(letter)
+
+    def get_move(self, game):
+        """
+        Method for asking and validating the player's move based on
+        available spots left on the game board, and checking
+        for valid input.
+        """
+        valid_square = False
+        val = None
+        while not valid_square:
+            square = input(self.letter + '\'s turn. Input move(0-8): ')
+            try:
+                val = int(square)
+                if val not in game.available_moves():
+                    raise ValueError
+                valid_square = True
+            except ValueError:
+                print("Invalid square. Try again.")
+
+        return val
 
 
 class TicTacToe:
@@ -44,6 +102,9 @@ class TicTacToe:
         """
         return [i for i, spot in enumerate(self.board) if spot == ' ']
 
+    def reset_board(self):
+        self.board = sel.board.clear()
+
     def empty_squares(self):
         """
         This method returns a boolean value
@@ -52,9 +113,6 @@ class TicTacToe:
         the returned value from this method is True.
         """
         return ' ' in self.board
-
-    # def num_empty_squares(self):
-    #     return self.board.count(' ')
 
     def make_move(self, square, letter):
         """
@@ -99,17 +157,6 @@ class TicTacToe:
         return False
 
 
-def quit(user_input):
-    """
-    The program quits if the user types in "q" as user input
-    """
-    if user_input == "q" or user_input == "Q":
-        type("thanks for playing")
-        return True
-    else:
-        return False
-
-
 def type(text):
     for char in text:
         sys.stdout.write(char)
@@ -117,98 +164,59 @@ def type(text):
         time.sleep(0.1)
 
 
-def play_again():
-    pass
-
-
-def play(game, human, computer, print_game=True):
-    """
-    This is the main game function that prints the reference
-    board, and then the main board. The function loops until
-    there are no empy spaces left, or until there is a winner.
-    The function also switches between the players after each
-    move.
-    """
+def play(game, x_player, o_player, print_game=True):
     if print_game:
-        # prints out the reference board if print_game is set to True
         game.print_ref_board()
 
-    letter = 'X'
-    # X means the first one to make a move is the player
+    letter = "X"
+
     while game.empty_squares():
-        if letter == 'O':
-            # if the current value of the letter is O, the computer moves
-            # otherwise the player is asked to make a move
-            # switching between players happens at the end of the loop,
-            # while there is no winner yet, or there are empty spaces left
+        if letter == "O":
             square = o_player.get_move(game)
         else:
             square = x_player.get_move(game)
-
         if game.make_move(square, letter):
-            # proceeds if the intended move is valid
             if print_game:
-                # print the current player's move
-                print(letter + f' makes a move to square {square}')
-                # print the updated board
+                print(f"{letter} makes a move to square {square}")
                 game.print_game_board()
-                # print an empty line after the board
                 print('')
 
-            # if game.current_winner:
-            #     # triggers if a value was assigned by winner()
-            #     # returns the letter of the winner
-            #     # ends the game loop
-            #     if print_game:
-            #         print(letter + ' wins!')
-            #     return letter
-            #     # print_game = False
-            #     # play_again()
-
             if game.current_winner:
-                print(f"{letter} wins!")
-                while True:
-                    answer = str(input('Run again? (y/n): '))
-                    if answer == 'y':
-                        type("resetting board...")
-                        break
-                    elif answer == 'n':
-                        print("Goodbye")
-                        break
-                break
+                if print_game:
+                    print(f"{letter} wins!")
+                return letter
 
-            if letter == 'X':
-                # keeps switching players, until winner is assigned
-                # or if there is available space left
-                letter = 'O'
-            else:
-                letter = 'X'
+            letter = "O" if letter == "X" else "X"
 
-            if not game.empty_squares():
-                print("It's a tie!")
-                while True:
-                    ask_player()
+    if print_game:
+        print("its a tie!")
+        return None
 
-       
-        # time.sleep(1)
-        # a short delay between switching players
 
-    # if print_game:
-    #     # if the while loop ends without a winner assigned,
-    #     # and there is no empty space left
-    #     # print "It's a tie!"
-    #     print("It's a tie!")
-        
-
+def instructions():
+    name = input("Please enter your name: ")
+    print(f"Welcome {name}!")
+    print(f"{name}'s symbol is X\nWhile the computer's symbol is O\nYou will make the first move")
+    print("Please Enter 's' to start the game or 'q' to quit!")
+    while True:
+        decision = input().lower()
+        if decision == "s":
+            os.system("cls")
+            os.system("clear")
+            play(t, x_player, o_player, print_game=True)
+            return
+        elif decision == "q":
+            print("Thanks for playing!")
+            break
 
 
 def menu():
     """
     This function is called first, when the program starts running.
-    Prints out game title and asks for user input to either 
+    Prints out game title and asks for user input to either
     proceed to playing or quit the game
     """
-    ascii = ("""
+    ascii = (r"""
  ______   __     ______        ______   ______     ______        ______   ______     ______    
 /\__  _\ /\ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\   
 \/_/\ \/ \ \ \  \ \ \____     \/_/\ \/ \ \  __ \  \ \ \____     \/_/\ \/ \ \ \/\ \  \ \  __\   
@@ -219,17 +227,26 @@ def menu():
     print(ascii)
     print("Welcome to tic-tac-toe")
     print('')
-    name = input("Please enter your name: ")
-    print('')
-    print(f"Welcome {name}!\n\nEnter 's' to start the game or 'q' to quit!")
+    print("please press enter to start the game")
     user_input = input().lower()
-    if user_input == "s":
+    if user_input == "":
         type("Game is starting...")
         time.sleep(1)
         os.system("cls")
         os.system("clear")
-        play(t, x_player, o_player, print_game=True)
-       
+        instructions()
+        while True:
+            print("Play again? Y/N: ")
+            user_input = input().lower()
+            if user_input == "y":
+                os.system("cls")
+                os.system("clear")
+                instructions()
+            elif user_input == "n":
+                print("thanks for playing!")
+                os.system("cls")
+                os.system("clear")
+                break
 
 
 if __name__ == '__main__':
