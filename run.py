@@ -83,6 +83,7 @@ class TicTacToe:
         for row in [self.board[i*3:(i+1)*3] for i in range(3)]:
             print("| " + ' | '.join(row) + ' |')
 
+
     @staticmethod
     # a method that is not tied to any classes
     def print_ref_board():
@@ -101,9 +102,6 @@ class TicTacToe:
         the player class.
         """
         return [i for i, spot in enumerate(self.board) if spot == ' ']
-
-    def reset_board(self):
-        self.board = sel.board.clear()
 
     def empty_squares(self):
         """
@@ -167,7 +165,6 @@ def type(text):
 def play(game, x_player, o_player, print_game=True):
     if print_game:
         game.print_ref_board()
-
     letter = "X"
 
     while game.empty_squares():
@@ -194,6 +191,9 @@ def play(game, x_player, o_player, print_game=True):
 
 
 def instructions():
+    x_player = HumanPlayer('X')
+    o_player = RandomComputerPlayer('O')
+    t = TicTacToe()
     name = input("Please enter your name: ")
     print(f"Welcome {name}!")
     print(f"{name}'s symbol is X\nWhile the computer's symbol is O\nYou will make the first move")
@@ -250,7 +250,5 @@ def menu():
 
 
 if __name__ == '__main__':
-    x_player = HumanPlayer('X')
-    o_player = RandomComputerPlayer('O')
-    t = TicTacToe()
-    menu()
+    while True:
+        menu()
