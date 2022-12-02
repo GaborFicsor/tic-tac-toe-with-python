@@ -53,9 +53,9 @@ class HumanPlayer(Player):
         valid_square = False
         val = None
         while not valid_square:
-            square = input(self.letter + '\'s turn. Input move(0-8): ')
+            square = input(self.letter + '\'s turn. Input move(1-9): ')
             try:
-                val = int(square)
+                val = int(square) - 1
                 if val not in game.available_moves():
                     raise ValueError
                 valid_square = True
@@ -90,7 +90,7 @@ class TicTacToe:
         Method for printing the reference board at the start of the game
         with the indices referring to the correct user input.
         """
-        ref_board = [[str(i) for i in range(j*3, (j+1)*3)] for j in range(3)]
+        ref_board = [[str(i+1) for i in range(j*3, (j+1)*3)] for j in range(3)]
         for row in ref_board:
             print("| " + ' | '.join(row) + ' |')
 
@@ -164,7 +164,7 @@ def type_slow(text):
 def go_first():
     letter = None
     while True:
-        start = input("Would you like to start, or let the computer go first? Y/N")
+        start = input("Would you like to start, or let the computer go first? Y/N").lower()
         if start == "y":
             letter = "X"
             return letter
@@ -186,7 +186,7 @@ def play(game, x_player, o_player, print_game=True):
             square = x_player.get_move(game)
         if game.make_move(square, letter):
             if print_game:
-                print(f"{letter} makes a move to square {square}")
+                print(f"{letter} makes a move to square {square + 1}")
                 game.print_game_board()
                 print('')
 
@@ -269,4 +269,8 @@ def menu():
 
 
 if __name__ == '__main__':
-    menu()
+    # menu()
+    x_player = HumanPlayer('X')
+    o_player = RandomComputerPlayer('O')
+    tic_tac_toe = TicTacToe()
+    play(tic_tac_toe, x_player, o_player, print_game=True)
