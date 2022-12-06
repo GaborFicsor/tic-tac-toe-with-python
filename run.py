@@ -53,7 +53,7 @@ class HumanPlayer(Player):
         valid_square = False
         val = None
         while not valid_square:
-            square = input(self.letter + '\'s turn. Input move(1-9): ')
+            square = input("Make your move(1-9): ")
             if square.isalpha():
                 print("Please enter numbers only.")
             elif not square or square.isspace():
@@ -174,7 +174,7 @@ def type_slow(text):
 def go_first():
     letter = None
     while True:
-        start = input("Would you like to start, or let the computer go first? Y/N").lower()
+        start = input("Would you like to start ('Y'), or let the computer go first('N')? Y/N: ").lower()
         if start == "y":
             letter = "X"
             return letter
@@ -185,10 +185,12 @@ def go_first():
             print(f"\nPlease enter 'y' if you want to go first, or 'n' to let the computer go first\n")
 
 
-def play(game, x_player, o_player, print_game=True):
+def play(game, x_player, o_player, name, print_game=True):
     if print_game:
-        game.print_ref_board()
-    letter = go_first()
+        letter = go_first()
+    print("\nThis is the reference board:\n")
+    game.print_ref_board()
+    print("\nThe numbers on the board represent the input you need to type to make your move.\n")
     while game.empty_squares():
         if letter == "O":
             square = o_player.get_move(game)
@@ -196,19 +198,25 @@ def play(game, x_player, o_player, print_game=True):
             square = x_player.get_move(game)
         if game.make_move(square, letter):
             if print_game:
-                print(f"{letter} makes a move to square {square + 1}")
+                if letter == "X":
+                    print(f"{name} makes a move to square {square + 1}\n")
+                else:
+                    print(f"Computer makes a move to square {square + 1}\n")
                 game.print_game_board()
                 print('')
 
             if game.current_winner:
                 if print_game:
-                    print(f"{letter} wins!")
+                    if letter == "X":
+                        print(f"{name} wins!")
+                    else:
+                        print("Computer wins!")
                 return letter
 
             letter = "O" if letter == "X" else "X"
 
     if print_game:
-        print("its a tie!")
+        print("\nits a tie!")
         return None
 
 
@@ -228,9 +236,6 @@ def get_name():
             return name
 
 
-
-
-
 def instructions():
     x_player = HumanPlayer('X')
     o_player = RandomComputerPlayer('O')
@@ -244,11 +249,13 @@ def instructions():
         decision = input().lower()
         if decision == "s":
             wipe()
-            play(tic_tac_toe, x_player, o_player, print_game=True)
+            play(tic_tac_toe, x_player, o_player, name, print_game=True)
             return
         elif decision == "q":
             print("Thanks for playing!")
             break
+        else:
+            print("Please enter S to start or Q to quit")
 
 
 def menu():
@@ -276,7 +283,7 @@ def menu():
         wipe()
         instructions()
         while True:
-            print("Go back to the starting screen? Y/N: ")
+            print("Would you like to play again? Y/N: ")
             user_input = input().lower()
             if user_input == "y":
                 wipe()
