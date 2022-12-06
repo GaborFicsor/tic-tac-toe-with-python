@@ -54,10 +54,11 @@ class HumanPlayer(Player):
         val = None
         while not valid_square:
             square = input("Make your move(1-9): ")
+            print('')
             if square.isalpha():
-                print("Please enter numbers only.")
+                print("Please enter numbers only.\n")
             elif not square or square.isspace():
-                print("Strings can not be entered.")
+                print("Whitespaces or blank input can not be entered.\n")
             else:
                 try:
                     val = int(square) - 1
@@ -68,9 +69,9 @@ class HumanPlayer(Player):
                         raise ValueError
                     valid_square = True
                 except ValueError:
-                    print("That spot is already taken. Please try again")
+                    print("That spot is already taken. Please try again.\n")
                 except IndexError:
-                    print("Number must be between 1 and 9")
+                    print("Number must be between 1 and 9.\n")
 
         return val
 
@@ -168,7 +169,7 @@ def type_slow(text):
     for char in text:
         sys.stdout.write(char)
         sys.stdout.flush()
-        time.sleep(0.1)
+        time.sleep(0.05)
 
 
 def go_first():
@@ -182,15 +183,15 @@ def go_first():
             letter = "O"
             return letter
         else:
-            print(f"\nPlease enter 'y' if you want to go first, or 'n' to let the computer go first\n")
+            print("\nPlease enter 'Y' if you want to go first, or 'N' to let the computer go first.\n")
 
 
 def play(game, x_player, o_player, name, print_game=True):
     if print_game:
         letter = go_first()
-    print("\nThis is the reference board:\n")
+    print("\n\nReference board:\n")
     game.print_ref_board()
-    print("\nThe numbers on the board represent the input you need to type to make your move.\n")
+    print("\nThe numbers on the board represent the input you need to type.\n")
     while game.empty_squares():
         if letter == "O":
             square = o_player.get_move(game)
@@ -208,9 +209,9 @@ def play(game, x_player, o_player, name, print_game=True):
             if game.current_winner:
                 if print_game:
                     if letter == "X":
-                        print(f"{name} wins!")
+                        print(f"\n{name} wins!")
                     else:
-                        print("Computer wins!")
+                        print("\nComputer wins!")
                 return letter
 
             letter = "O" if letter == "X" else "X"
@@ -229,9 +230,9 @@ def get_name():
     while True:
         name = input("Please enter your name: ")
         if not name or name.isspace():
-            print("name can not be blank")
+            print("\nname can not be blank.\n")
         elif name.lower() == "blank":
-            print("nice try!")
+            print("\nnice try!\n")
         else:
             return name
 
@@ -241,21 +242,30 @@ def instructions():
     o_player = RandomComputerPlayer('O')
     tic_tac_toe = TicTacToe()
     name = get_name()
-    print(f"Welcome {name}!")
-    print(f"{name}'s symbol is X\nWhile the computer's symbol is O")
-    print("First one to line up three of their symbols win!")
-    print("Please Enter 's' to start the game or 'q' to quit!")
+    type_slow(f"\nWelcome {name}!\n")
+    time.sleep(0.2)
+    type_slow("\nYour letter is X.\n")
+    time.sleep(0.2)
+    type_slow("\nThe Computer's letter is O.\n")
+    time.sleep(0.2)
+    type_slow("\nFirst one to line up three of their letters wins!\n")
+    time.sleep(0.2)
+    print("\nPlease enter 'S' to start the game or 'Q' to quit.")
     while True:
         decision = input().lower()
         if decision == "s":
+            type_slow("\nSetting up board...")
+            time.sleep(0.5)
             wipe()
             play(tic_tac_toe, x_player, o_player, name, print_game=True)
             return
         elif decision == "q":
-            print("Thanks for playing!")
-            break
+            type_slow("\nThanks for playing!")
+            time.sleep(1)
+            wipe()
+            exit()
         else:
-            print("Please enter S to start or Q to quit")
+            print("Please enter 'S' to start or 'Q' to quit")
 
 
 def menu():
@@ -273,9 +283,9 @@ def menu():
     """)
     print('')
     print(ascii_title)
-    print("Welcome to tic-tac-toe")
+    print("Welcome to tic-tac-toe!")
     print('')
-    print("please press enter to start the game")
+    print("press enter to start the game")
     user_input = input().lower()
     if user_input == "":
         type_slow("Game is starting...")
@@ -283,17 +293,18 @@ def menu():
         wipe()
         instructions()
         while True:
-            print("Would you like to play again? Y/N: ")
+            print("\nWould you like to play again? Y/N: ")
             user_input = input().lower()
             if user_input == "y":
                 wipe()
                 instructions()
             elif user_input == "n":
-                print("thanks for playing!")
+                type_slow("\nThanks for playing!")
+                time.sleep(1)
                 wipe()
                 break
             else:
-                print("Please enter either 'Y' or 'N'")
+                print("\nPlease enter either 'Y' or 'N'")
 
 
 if __name__ == '__main__':
