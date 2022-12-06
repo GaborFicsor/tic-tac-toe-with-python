@@ -183,7 +183,7 @@ def go_first():
     letter = None
     while True:
         start = input("Would you like to start ('Y'),\
-             or let the computer go first('N')? Y/N: ").lower()
+ or let the computer go first('N')? Y/N: ").lower()
         if start == "y":
             letter = "X"
             return letter
@@ -192,7 +192,7 @@ def go_first():
             return letter
         else:
             print("\nPlease enter 'Y' if you want to go first,\
-                 or 'N' to let the computer go first.\n")
+ or 'N' to let the computer go first.\n")
 
 
 def play(game, x_player, o_player, name, print_game=True):
@@ -213,9 +213,9 @@ def play(game, x_player, o_player, name, print_game=True):
         if game.make_move(square, letter):
             if print_game:
                 if letter == "X":
-                    print(f"{name} makes a move to square {square + 1}\n")
+                    type_slow(f"{name} makes a move to square {square + 1}")
                 else:
-                    print(f"Computer makes a move to square {square + 1}\n")
+                    type_slow(f"Computer makes a move to square {square + 1}")
                 game.print_game_board()
                 print('')
 
@@ -229,6 +229,7 @@ def play(game, x_player, o_player, name, print_game=True):
 
             letter = "O" if letter == "X" else "X"
             # alternate between letters for each player's turn
+        time.sleep(1)
 
     if print_game:
         # if there is no blank spot left, the game ends with a tie
