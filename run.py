@@ -1,3 +1,8 @@
+"""
+time and sys for delaying the print functions
+os for clearing the terminal
+random for making computer's choice
+"""
 import time
 import sys
 import os
@@ -13,19 +18,12 @@ class Player:
         # the letter will be either X(HumanPlayer), or O(RandomComputerPlayer)
         self.letter = letter
 
-    def get_move(self, game):
-        """
-        Method for validating each player's intented move.
-        """
-
 
 class RandomComputerPlayer(Player):
     """
     Subclass of the Player parent class that defines the computer player
     and the method used for making their move.
     """
-    # def __init__(self, letter):
-    #     super().__init__(letter)
 
     def get_move(self, game):
         """
@@ -41,8 +39,6 @@ class HumanPlayer(Player):
     Subclass of the Player parent class that defines the Human player
     and the method used for making their move.
     """
-    # def __init__(self, letter):
-    #     super().__init__(letter)
 
     def get_move(self, game):
         """
@@ -89,7 +85,7 @@ class TicTacToe:
     def print_game_board(self):
         """
         Method for printing the base 3x3 game board.
-        Prints a separator between each spot on the board.
+        Also prints a separator between each spot on the board.
         """
         for row in [self.board[i*3:(i+1)*3] for i in range(3)]:
             print("| " + ' | '.join(row) + ' |')
@@ -147,14 +143,17 @@ class TicTacToe:
         row_ind = square // 3
         row = self.board[row_ind*3:(row_ind + 1) * 3]
         if all([spot == letter for spot in row]):
+            # checking for rows that contain the same letter 3 times.
             return True
 
         col_ind = square % 3
         column = [self.board[col_ind+i*3] for i in range(3)]
         if all([spot == letter for spot in column]):
+            # checking for columns that contain the same letter 3 times.
             return True
 
         if square % 2 == 0:
+            # checking if the 2 diagonals that contain the same letter 3 times.
             diagonal1 = [self.board[i] for i in [0, 4, 8]]
             if all([spot == letter for spot in diagonal1]):
                 return True
@@ -166,6 +165,10 @@ class TicTacToe:
 
 
 def type_slow(text):
+    """
+    Function to make game type text instead of printing.
+    Makes the game a little more satisfying to read.
+    """
     for char in text:
         sys.stdout.write(char)
         sys.stdout.flush()
@@ -173,9 +176,14 @@ def type_slow(text):
 
 
 def go_first():
+    """
+    Function to let the player decide, whether he wants to
+    go first, or make the computer go first.
+    """
     letter = None
     while True:
-        start = input("Would you like to start ('Y'), or let the computer go first('N')? Y/N: ").lower()
+        start = input("Would you like to start ('Y'),\
+             or let the computer go first('N')? Y/N: ").lower()
         if start == "y":
             letter = "X"
             return letter
@@ -183,13 +191,18 @@ def go_first():
             letter = "O"
             return letter
         else:
-            print("\nPlease enter 'Y' if you want to go first, or 'N' to let the computer go first.\n")
+            print("\nPlease enter 'Y' if you want to go first,\
+                 or 'N' to let the computer go first.\n")
 
 
 def play(game, x_player, o_player, name, print_game=True):
+    """
+    The function for the game to loop until there is a
+    winner, or there are no blank spots left.
+    """
     if print_game:
         letter = go_first()
-    print("\n\nReference board:\n")
+    print("\nReference board:\n")
     game.print_ref_board()
     print("\nThe numbers on the board represent the input you need to type.\n")
     while game.empty_squares():
@@ -215,18 +228,26 @@ def play(game, x_player, o_player, name, print_game=True):
                 return letter
 
             letter = "O" if letter == "X" else "X"
+            # alternate between letters for each player's turn
 
     if print_game:
+        # if there is no blank spot left, the game ends with a tie
         print("\nits a tie!")
         return None
 
 
 def wipe():
+    """
+    Function to declutter terminal
+    """
     os.system("cls")
     os.system("clear")
 
 
 def get_name():
+    """
+    Function to ask for the user's name and store it
+    """
     while True:
         name = input("Please enter your name: ")
         if not name or name.isspace():
@@ -238,6 +259,10 @@ def get_name():
 
 
 def instructions():
+    """
+    Function to store user's name and give short instructions on
+    how to play the game
+    """
     x_player = HumanPlayer('X')
     o_player = RandomComputerPlayer('O')
     tic_tac_toe = TicTacToe()
@@ -268,7 +293,7 @@ def instructions():
             print("Please enter 'S' to start or 'Q' to quit")
 
 
-def menu():
+def main():
     """
     This function is called first, when the program starts running.
     Prints out game title and asks for user input to either
@@ -308,8 +333,4 @@ def menu():
 
 
 if __name__ == '__main__':
-    menu()
-    # x_player = HumanPlayer('X')
-    # o_player = RandomComputerPlayer('O')
-    # tic_tac_toe = TicTacToe()
-    # play(tic_tac_toe, x_player, o_player, print_game=True)
+    main()
