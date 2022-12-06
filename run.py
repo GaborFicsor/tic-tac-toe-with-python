@@ -2,7 +2,6 @@ import time
 import sys
 import os
 import random
-import math
 
 
 class Player:
@@ -57,8 +56,8 @@ class HumanPlayer(Player):
             square = input(self.letter + '\'s turn. Input move(1-9): ')
             if square.isalpha():
                 print("Please enter numbers only.")
-            elif not square:
-                print("A number must be entered.")
+            elif not square or square.isspace():
+                print("Strings can not be entered.")
             else:
                 try:
                     val = int(square) - 1
@@ -72,8 +71,6 @@ class HumanPlayer(Player):
                     print("That spot is already taken. Please try again")
                 except IndexError:
                     print("Number must be between 1 and 9")
-                except NameError:
-                    print("Please enter numbers only.")
 
         return val
 
@@ -221,8 +218,17 @@ def wipe():
 
 
 def get_name():
-    name = input("Please enter your name: ")
-    return name
+    while True:
+        name = input("Please enter your name: ")
+        if not name or name.isspace():
+            print("name can not be blank")
+        elif name.lower() == "blank":
+            print("nice try!")
+        else:
+            return name
+
+
+
 
 
 def instructions():
@@ -279,6 +285,8 @@ def menu():
                 print("thanks for playing!")
                 wipe()
                 break
+            else:
+                print("Please enter either 'Y' or 'N'")
 
 
 if __name__ == '__main__':
