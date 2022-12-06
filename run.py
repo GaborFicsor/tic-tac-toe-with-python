@@ -2,6 +2,7 @@ import time
 import sys
 import os
 import random
+import math
 
 
 class Player:
@@ -54,13 +55,25 @@ class HumanPlayer(Player):
         val = None
         while not valid_square:
             square = input(self.letter + '\'s turn. Input move(1-9): ')
-            try:
-                val = int(square) - 1
-                if val not in game.available_moves():
-                    raise ValueError
-                valid_square = True
-            except ValueError:
-                print("Invalid square. Try again.")
+            if square.isalpha():
+                print("Please enter numbers only.")
+            elif not square:
+                print("A number must be entered.")
+            else:
+                try:
+                    val = int(square) - 1
+                    if val < 0 or val >= 9:
+                        raise IndexError
+                    elif val not in game.available_moves():
+                        valid_square = True
+                        raise ValueError
+                    valid_square = True
+                except ValueError:
+                    print("That spot is already taken. Please try again")
+                except IndexError:
+                    print("Number must be between 1 and 9")
+                except NameError:
+                    print("Please enter numbers only.")
 
         return val
 
@@ -172,7 +185,7 @@ def go_first():
             letter = "O"
             return letter
         else:
-            print("Please enter y if you want to go first, or n to let the computer go first")
+            print(f"\nPlease enter 'y' if you want to go first, or 'n' to let the computer go first\n")
 
 
 def play(game, x_player, o_player, print_game=True):
@@ -269,8 +282,8 @@ def menu():
 
 
 if __name__ == '__main__':
-    # menu()
-    x_player = HumanPlayer('X')
-    o_player = RandomComputerPlayer('O')
-    tic_tac_toe = TicTacToe()
-    play(tic_tac_toe, x_player, o_player, print_game=True)
+    menu()
+    # x_player = HumanPlayer('X')
+    # o_player = RandomComputerPlayer('O')
+    # tic_tac_toe = TicTacToe()
+    # play(tic_tac_toe, x_player, o_player, print_game=True)
