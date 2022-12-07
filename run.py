@@ -305,17 +305,18 @@ def main():
     proceed to playing or quit the game
     """
     ascii_title = (r"""
- ______   __     ______        ______   ______     ______        ______   ______     ______
-/\__  _\ /\ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\      /\__  _\ /\  __ \   /\  ___\
-\/_/\ \/ \ \ \  \ \ \____     \/_/\ \/ \ \  __ \  \ \ \____     \/_/\ \/ \ \ \/\ \  \ \  __\
-   \ \_\  \ \_\  \ \_____\       \ \_\  \ \_\ \_\  \ \_____\       \ \_\  \ \_____\  \ \_____\
-    \/_/   \/_/   \/_____/        \/_/   \/_/\/_/   \/_____/        \/_/   \/_____/   \/_____/
-    """)
+  __  .__                   __                            __
+_/  |_|__| ____           _/  |______    ____           _/  |_  ____   ____
+\   __\  |/ ___\   ______ \   __\__  \ _/ ___\   ______ \   __\/  _ \_/ __ \
+ |  | |  \  \___  /_____/  |  |  / __ \\  \___  /_____/  |  | (  <_> )  ___/
+ |__| |__|\___  >          |__| (____  /\___  >          |__|  \____/ \___  >
+              \/                     \/     \/                            \/
+""")
     print('')
-    print(ascii_title)
-    print("Welcome to tic-tac-toe!")
+    print(ascii_title.center(200))
+    print("Welcome to tic-tac-toe!".center(80))
     print('')
-    print("press enter to start the game")
+    print("press enter to start the game".center(80))
     user_input = input().lower()
     if user_input == "":
         type_slow("Game is starting...")

@@ -110,16 +110,23 @@ Feature to let the player decide what letter they want to use. (The default is "
 ## Unsolved 
 * After hours of testing I have nout found any bugs left unfixed.
 
-## Problems
-* The ASCII art visible on the starting screen contains more than 79 characters in the file run.py.
-* The IDE interpreted the "/" characters as escape sequences.
-  * Wrapping the the characters in an r-string solved this problem.
-  * The only problems with the code will remain related to the lines containing the ASCII art too long.
 
 # Deployment
 
 Deploying this page was made possible with the use of GitHub and Heroku with the following steps:
 1. Create a new account on Heroku and connect it with my GitHub account.
+2. Sign in to Heroku
+3. Click on "New" and select "Create new app"
+4. Name app and choose region(select Europe)
+5. Once the app is created, navigate to Settings tab and add the following buildpacks:
+   1. 'heroku/python'
+   2. 'heroku/nodejs'
+6. Create Config Var called 'PORT' as KEY, and '8000' as VALUE
+7. Navigate to Deploy tab and select GitHub as Deployment method
+8. Click Connect to GitHub
+9. With our GitHub profile selected, search for the correct GitHub repository and click "Connect"
+10. Once the connection is done, select Enable Automatic Deploys (to make sure heroku rebuilds the latest version after the final chages have been pushed to GitHub)
+11. Finally select Deploy Branch in Manual deploy to make the initial deyploment.(Automatic deploys work only after this step.)
 
 # Credits
 * Code Institute's python essentials template
