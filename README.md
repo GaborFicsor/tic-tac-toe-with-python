@@ -16,6 +16,21 @@ Tic-tac-toe-with-python is based on the original game of tic-tac-toe.
 
 # Flowchart of the program
 ![Screenshot of the program's flowchart](images/flowchart.png)
+
+# Goals of the application
+* The main goal of this application is to provide a simple game of tic-tac-toe to the user
+* The application can offer a short time for the user to have fun while playing, however further goal is to make the game a little more challenging by adding AI to the computer. This is explained in the future features section.
+* The program offers the player the ability to decide on who makes their first move.
+* The target audience is anyone who wants to play a game of tic-tac-toe
+
+## Critical Goals
+* to make the program accept inputs from the user
+* to handle the user input in a way that's accessible and straightforward by providing explanataion if the input is wrong.
+* to give instructions to the player on how to play according to the game's rules.
+* to inform the user about the game's current state, and the reamining spots they can choose to make their move.
+* to make the program give the user the correct result upon finishing the game.
+* to give the user the ability to restart the game.
+* to give the user the ability to terminate the game.
 # Features
 
 As listed in the How to play section:
