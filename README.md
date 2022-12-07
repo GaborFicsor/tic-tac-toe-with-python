@@ -75,6 +75,8 @@ Errors:
 ## miscellaneous
 * when asking for name, the program does not accept an empty string or a whitespace as name\
 ![Screenshot of asking for username](images/blank_name.png)
+* name also can not be "comp" or "computer", because the result of the game might be confusing\
+![Screenshot of error for using computer as name](images/name_computer.png)
 * when asking the user if they want to play again, only the correct input is accepted\
 ![Screenshot of decision making (play again)](images/play_again.png)
 * when asking the user to decide who makes their first move, only the correct input is accepted\
