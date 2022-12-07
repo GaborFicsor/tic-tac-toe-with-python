@@ -147,7 +147,7 @@ class TicTacToe:
         """
         Method for checking for a winner, based on the rules
         of tic-tac-toe. The function checks for each row,
-        column, and 2 possible diagonal outcomes that.
+        column, and 2 possible diagonal outcomes.
         """
         row_ind = square // 3
         row = self.board[row_ind*3:(row_ind + 1) * 3]

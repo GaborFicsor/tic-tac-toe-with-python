@@ -59,7 +59,7 @@ As listed in the How to play section:
 * After the game ends, the user is able to quit the game or play again.
 
 ## Error Handling:
-
+---
 Invalid user inputs include:
 1. Strings (words or letters)
 * The user is asked to enter whole numbers only.\
@@ -73,8 +73,9 @@ Invalid user inputs include:
 
 If all of the above has been validated, the user input is converted into an integer, and then once again, the program checks for validation.
 
-## Further error handling:
+### Further error handling:
 ---
+
 Errors:
 1. ValueError: Input refers to an index on the board that is not available.
 * The user is told that their desired spot has been taken.\
@@ -86,7 +87,7 @@ Errors:
 * Input can not be over the number 9\
 ![Screenshot of the IndexError](images/bounds.png)
 
-## miscellaneous
+### miscellaneous
 ---
 * when asking for name, the program does not accept an empty string or a whitespace as name\
 ![Screenshot of asking for username](images/blank_name.png)
