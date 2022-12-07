@@ -17,17 +17,22 @@ Tic-tac-toe-with-python is based on the original game of tic-tac-toe.
 
 # Flowchart of the program
 ![Screenshot of the program's flowchart](images/flowchart.png)
-# Features 
+# Features
+
 As listed in the How to play section:
 * The starting screen shows the game title and asks the user to hit enter to play the game.
+
 ![Screenshot of the starting screen](images/starting_screen.png)
 
 * Ask for name as user input (name can not be blank).
 * Print the instructions of the game, and inform the user what mark/letter they are assigned.
+
 ![Screenshot of the instructions](images/instructions.png)
 
 * Feature to ask the player to decide who is going to make the first move on the board.
 * The game prints the reference board and tells the user which index on the board refers to which number they can input.
+* The reference table and the correct input to match the indices were modified to make the game more intuitive for the user (Instead of expecting the user to use numbers from 0 to 8, the correct indices are altered to 1-9).
+
 ![Screenshot of the reference board](images/reference_board.png)
 
 * The game will start based on the user's previous decision.
@@ -36,8 +41,11 @@ As listed in the How to play section:
 * The user is asked to type in their move manually.
 * The program is handling errors by informing the player if they have entered an invalid input.
 
+![Screenshot of the gameplay](images/gameplay.png)
+* After the game ends, the user is able to quit the game or play again.
+
 ## Error Handling:
----
+
 Invalid user inputs include:
 1. Strings (words or letters)
 * The user is asked to enter whole numbers only.\
@@ -53,7 +61,7 @@ If all of the above has been validated, the user input is converted into an inte
 
 ## Further error handling:
 ---
-Errors:\
+Errors:
 1. ValueError: Input refers to an index on the board that is not available.
 * The user is told that their desired spot has been taken.\
 ![Screenshot of the ValueError](images/already_taken.png)
@@ -64,7 +72,14 @@ Errors:\
 * Input can not be over the number 9\
 ![Screenshot of the IndexError](images/bounds.png)
 
-After the game ends with a result of a win or a tie, the user is asked if they want to play again, or quit the game.
+## miscellaneous
+* when asking for name, the program does not accept an empty string or a whitespace as name\
+![Screenshot of asking for username](images/blank_name.png)
+* when asking the user if they want to play again, only the correct input is accepted\
+![Screenshot of decision making (play again)](images/play_again.png)
+* when asking the user to decide who makes their first move, only the correct input is accepted\
+![Screenshot of decision making (who goes first)](images/go_first.png)\
+
 
 # Possible features to implement in the future
 At this stage, the computer is relatively easy to beat. The computer is not introduced to the rules of the game and only makes its decision by choosing a random spot that is still available on the board. This means if the computer has 2 of its letters lined up and with their next move they would be able to win the game, the pattern does not get recognized and the computer may miss their chance. The same goes for preventing the player from lining up their letters.
@@ -109,7 +124,7 @@ random
 * All listed features have been tested thoroughly on several trials in the GitPod terminal.
 * Tested for every possible invalid input.
 
-## Bugs and problems
+## Bugs
 ---
 ### Solved
 * After the player decided to play the game again, the program restarted but the board remained filled with the last game's entries, thus the game could not be played properly. This was caused by a class instance that was created outside of the main game function.

@@ -265,6 +265,8 @@ def get_name():
             print("\nName can not be blank.\n")
         elif name.lower() == "blank":
             print("\nNice try!\n")
+        elif name.lower() == "computer" or name.lower() == "comp":
+            print("\nName can not be Computer.\n")
         else:
             return name
 
