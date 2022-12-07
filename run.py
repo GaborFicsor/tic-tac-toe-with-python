@@ -9,6 +9,12 @@ import os
 import random
 
 
+# the Player superclass, its subclasses and methods
+# and the TicTacToe class and play function was made
+# with the help of
+# https://www.youtube.com/watch?v=8ext9G7xspg&t=2154s
+# tutorial
+# this can also be found in the credits section of README.md
 class Player:
     """
     Class for players represented by the letters

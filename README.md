@@ -22,7 +22,7 @@ As listed in the How to play section:
 * The starting screen shows the game title and asks the user to hit enter to play the game.
 ![Screenshot of the starting screen](images/starting_screen.png)
 
-
+* Ask for name as user input (name can not be blank).
 * Print the instructions of the game, and inform the user what mark/letter they are assigned.
 ![Screenshot of the instructions](images/instructions.png)
 
@@ -88,7 +88,6 @@ For the main logic of the game, I used a tutorial (see credits) to create classe
 * Gitpod for writing and testing the program manually.
 * Heroku for deploying the project
 
-
 # Imported libraries
 
 time and sys
@@ -104,6 +103,7 @@ random
 # Testing and validation
 ## PEP8
  * Confirmed that [Code Institute's PEP8 validator](https://pep8ci.herokuapp.com) found no errors
+ ![Screenshot of Code Institute's PEP8 validator](images/linter.png)
 
 ## Manual
 * All listed features have been tested thoroughly on several trials in the GitPod terminal.
