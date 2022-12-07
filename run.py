@@ -256,9 +256,9 @@ def get_name():
     while True:
         name = input("Please enter your name:\n")
         if not name or name.isspace():
-            print("\nname can not be blank.\n")
+            print("\nName can not be blank.\n")
         elif name.lower() == "blank":
-            print("\nnice try!\n")
+            print("\nNice try!\n")
         else:
             return name
 
