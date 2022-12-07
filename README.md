@@ -127,7 +127,7 @@ For the main logic of the game, I used a tutorial (see credits) to create classe
 * Gitpod for writing and testing the program manually.
 * Heroku for deploying the project
 
-## Imported libraries
+## Imported modules
 
 
 time and sys
