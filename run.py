@@ -325,25 +325,28 @@ def main():
     print("Welcome to tic-tac-toe!".center(80))
     print('')
     print("press enter to start the game".center(80))
-    user_input = input().lower()
-    if user_input == "":
-        type_slow("Game is starting...")
-        time.sleep(1)
-        wipe()
-        instructions()
-        while True:
-            print("\nWould you like to play again? Y/N:\n")
-            user_input = input().lower()
-            if user_input == "y":
-                wipe()
-                instructions()
-            elif user_input == "n":
-                type_slow("\nThanks for playing!")
-                time.sleep(1)
-                wipe()
-                break
-            else:
-                print("\nPlease enter either 'Y' or 'N'")
+    while True:
+        user_input = input().lower()
+        if user_input == "":
+            type_slow("Game is starting...")
+            time.sleep(1)
+            wipe()
+            instructions()
+            while True:
+                print("\nWould you like to play again? Y/N:\n")
+                user_input = input().lower()
+                if user_input == "y":
+                    wipe()
+                    instructions()
+                elif user_input == "n":
+                    type_slow("\nThanks for playing!")
+                    time.sleep(1)
+                    wipe()
+                    break
+                else:
+                    print("\nPlease enter either 'Y' or 'N'")
+        elif user_input != "":
+            print("press enter to start the game".center(80))
 
 
 if __name__ == '__main__':
