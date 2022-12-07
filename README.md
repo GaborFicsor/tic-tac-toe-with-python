@@ -3,8 +3,7 @@
 Tic-tac-toe-with-python is a simple game meant to be played in a Python terminal, provided by Heroku.
 Users of this game will play against the computer to line up three of their marks/letters in a row, column or diagonal way.
 
-Live version link
-
+The deployed version can be found [here](https://tic-tac-toe-with-python.herokuapp.com/)
 # How to play
 Tic-tac-toe-with-python is based on the original game of tic-tac-toe.
 1. At first, the user is asked to enter a name that will be displayed throughout the game.
