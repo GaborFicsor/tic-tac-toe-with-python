@@ -99,7 +99,7 @@ Errors:
 * when asking the user if they want to play again, only the correct input is accepted\
 ![Screenshot of decision making (play again)](images/play_again.png)
 * when asking the user to decide who makes their first move, only the correct input is accepted\
-![Screenshot of decision making (who goes first)](images/go_first.png)\
+![Screenshot of decision making (who goes first)](images/go_first.png)
 
 
 ## Possible features to implement in the future
