@@ -72,9 +72,10 @@ Errors:
 ![Screenshot of the IndexError](images/bounds.png)
 
 ## miscellaneous
+---
 * when asking for name, the program does not accept an empty string or a whitespace as name\
 ![Screenshot of asking for username](images/blank_name.png)
-* name also can not be "comp" or "computer", because the result of the game might be confusing\
+* name also can not be "comp" or "computer", because the result of the game would be confusing\
 ![Screenshot of error for using computer as name](images/name_computer.png)
 * when asking the user if they want to play again, only the correct input is accepted\
 ![Screenshot of decision making (play again)](images/play_again.png)
@@ -128,9 +129,9 @@ random
 ## Bugs
 ---
 ### Solved
-* After the player decided to play the game again, the program restarted but the board remained filled with the last game's entries, thus the game could not be played properly. This was caused by a class instance that was created outside of the main game function.
+* After the player decided to play the game again, the program restarted but the board remained filled with the last game's entries, thus making the game impossible to be played properly. This was caused by a class instance that was created outside of the main game function.
 * Quitting the game would not work properly unless the right input was made. This was caused by the lack of input handling within the function. Adding an else statement solved it by continuing to ask for the correct input.
-* Input handling did not accommodate floating point numbers and inputs that included both numbers and strings at the same time. Error for this message was handled as if it was a spot already taken on the board. Making sure the input was a number with the digit () method helped solve this.
+* Input handling did not accommodate floating point numbers and inputs that included both numbers and strings at the same time. Error for this message was handled as if it was a spot already taken on the board. Making sure the input was a number with the digit () method helped solving this.
 
 ### Unsolved 
 * After many hours of testing, I have not found any bugs left unfixed.
