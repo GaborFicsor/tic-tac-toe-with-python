@@ -49,12 +49,15 @@ class HumanPlayer(Player):
         valid_square = False
         val = None
         while not valid_square:
-            square = input("Make your move(1-9): ")
+            square = input("Make your move(1-9):\n")
             print('')
             if square.isalpha():
-                print("Please enter numbers only.\n")
+                print("Please enter whole numbers only.\n")
             elif not square or square.isspace():
                 print("Whitespaces or blank input can not be entered.\n")
+            elif not square.isdigit():
+                print("Input can not contain floats, strings or negative\
+ numbers.\n")
             else:
                 try:
                     val = int(square) - 1
@@ -183,7 +186,7 @@ def go_first():
     letter = None
     while True:
         start = input("Would you like to start ('Y'),\
- or let the computer go first('N')? Y/N: ").lower()
+ or let the computer go first('N')? Y/N:\n").lower()
         if start == "y":
             letter = "X"
             return letter
@@ -216,6 +219,7 @@ def play(game, x_player, o_player, name, print_game=True):
                     type_slow(f"{name} makes a move to square {square + 1}")
                 else:
                     type_slow(f"Computer makes a move to square {square + 1}")
+                print('')
                 game.print_game_board()
                 print('')
 
@@ -233,7 +237,7 @@ def play(game, x_player, o_player, name, print_game=True):
 
     if print_game:
         # if there is no blank spot left, the game ends with a tie
-        print("\nits a tie!")
+        print("\nIt's a tie!")
         return None
 
 
@@ -250,7 +254,7 @@ def get_name():
     Function to ask for the user's name and store it
     """
     while True:
-        name = input("Please enter your name: ")
+        name = input("Please enter your name:\n")
         if not name or name.isspace():
             print("\nname can not be blank.\n")
         elif name.lower() == "blank":
@@ -270,9 +274,9 @@ def instructions():
     name = get_name()
     type_slow(f"\nWelcome {name}!\n")
     time.sleep(0.2)
-    type_slow("\nYour letter is X.\n")
+    type_slow("\nYour letter is 'X'.\n")
     time.sleep(0.2)
-    type_slow("\nThe Computer's letter is O.\n")
+    type_slow("\nThe Computer's letter is 'O'.\n")
     time.sleep(0.2)
     type_slow("\nFirst one to line up three of their letters wins!\n")
     time.sleep(0.2)
@@ -319,7 +323,7 @@ def main():
         wipe()
         instructions()
         while True:
-            print("\nWould you like to play again? Y/N: ")
+            print("\nWould you like to play again? Y/N:\n")
             user_input = input().lower()
             if user_input == "y":
                 wipe()
