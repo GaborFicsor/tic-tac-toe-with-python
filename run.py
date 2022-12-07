@@ -106,7 +106,7 @@ class TicTacToe:
 
     def available_moves(self):
         """
-        Method for returning a tuple of the available moves.
+        Method for returning a list of the available moves.
         This method is used to validate the get_move method of
         the player class.
         """
